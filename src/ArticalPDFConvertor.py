@@ -7,9 +7,9 @@ A4_PAGE_HEIGHT = 297
 A4_PAGE_WIDTH = 210
 PAGE_VERTICAL_PADDING = 20
 PAGE_HORIZONTAL_PADDING = 15
-CONTENT_LINE_HEIGHT = 8
+CONTENT_LINE_HEIGHT = 10
 TITLE_LINE_HEIGHT = 15
-TITLE_FONT_SIZE = 15
+TITLE_FONT_SIZE = 18
 TITLE_CONTENT_PADDING = 10
 
 class StructuredPDFFont:
@@ -110,6 +110,10 @@ class ArticalPDF(StructuredPDF):
     @property
     def total_page_num(self):
         return len(self.cur_chapter.pages) if self.cur_chapter is not None else 0
+    
+    @property
+    def default_footer(self):
+        return f'{self.cur_chapter.title}: {self._cur_page.page_num}/{self.total_page_num}' 
 
     def add_chapter(self, chapter: ArticalChapter):
         self.cur_chapter = self._parse_chapter(chapter)
@@ -117,6 +121,7 @@ class ArticalPDF(StructuredPDF):
         for page in self.cur_chapter.pages:
             self.render_page(page, is_first)
             is_first = False
+            
     def render_page(self,page:PDFPage, is_first_page:bool):
         self._cur_page = page
         self.add_page()
