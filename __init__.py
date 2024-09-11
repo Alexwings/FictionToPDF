@@ -12,3 +12,5 @@ from .src.ArticalPDFConvertor import CONTENT_LINE_HEIGHT
 from .src.ArticalPDFConvertor import TITLE_LINE_HEIGHT
 from .src.ArticalPDFConvertor import TITLE_FONT_SIZE
 from .src.ArticalPDFConvertor import TITLE_CONTENT_PADDING
+
+from .src.ArticalEPUBConvertor import BOOK_TITLE, AUTHOR, read_chapter,create_epubs
